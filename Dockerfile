@@ -14,7 +14,7 @@ ENV GCLOUD_DATASET_ID "your gce project"
 ADD en_motd.py /en_motd/
 ADD requirements.txt /en_motd/
 
-WORKDIR /en_rss/
+WORKDIR /en_motd/
 
 RUN pip install -r requirements.txt
 
