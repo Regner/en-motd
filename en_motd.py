@@ -71,12 +71,12 @@ while True:
 
         latest_id = DS_CLIENT.get(DS_CLIENT.key(SERVICE_KIND, 'latest-id', 'MOTD', motd['name']))
         
-        if latest_id is not None and latest_id['id'] == motd_data['id']:
+        if latest_id is not None and latest_id['id'] == motd_data['Id']:
             continue
 
-        logger.info('New entry found for "{}"! Entry title: {}'.format(motd['name'], motd_data['motd']['title']))
+        logger.info('New entry found for "{}"! Entry title: {}'.format(motd['name'], motd_data['Motd']['Title']))
         
-        send_notification(motd['name'], motd_data['motd']['title'], motd['topic'])
-        update_latest_entry(motd['name'], latest_id, motd_data['id'])
+        send_notification(motd['name'], motd_data['Motd']['Title'], motd['topic'])
+        update_latest_entry(motd['name'], latest_id, motd_data['Id'])
 
     sleep(SLEEP_TIME)
