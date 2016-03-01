@@ -28,13 +28,14 @@ if not PS_TOPIC.exists():
     PS_TOPIC.create()
 
 
-def send_notification(title, subtitle, topic):
+def send_notification(title, subtitle, topic, extra_text):
     topics = json.dumps([topic])
     
     PS_TOPIC.publish(
         '',
         title=title,
         subtitle=subtitle,
+        extra_text=extra_text,
         service='en-motd',
         topics=topics,
     )
@@ -76,7 +77,7 @@ while True:
 
         logger.info('New entry found for "{}"! Entry title: {}'.format(motd['name'], motd_data['Motd']['Title']))
         
-        send_notification(motd['name'], motd_data['Motd']['Title'], motd['topic'])
+        send_notification(motd['name'], motd_data['Motd']['Title'], motd['topic'], motd_data['Motd']['Content'])
         update_latest_entry(motd['name'], latest_id, motd_data['Id'])
 
     sleep(SLEEP_TIME)
