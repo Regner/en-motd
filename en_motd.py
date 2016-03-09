@@ -1,7 +1,6 @@
 
 
 import os
-import json
 import logging
 import requests
 
@@ -29,15 +28,13 @@ if not PS_TOPIC.exists():
 
 
 def send_notification(title, subtitle, topic, extra_text):
-    topics = json.dumps([topic])
-    
     PS_TOPIC.publish(
         '',
         title=title,
         subtitle=subtitle,
         extra_text=extra_text,
         service='en-motd',
-        topics=topics,
+        topic=topic,
     )
 
 
